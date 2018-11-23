@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import { Empty } from '../model/global';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
+
+import { Empty } from '../model/global';
+import styles from './Login.less';
+
 const FormItem = Form.Item;
 
 interface LoginFormFactoryProps {
@@ -29,7 +32,7 @@ class LoginFormFactory extends React.Component<LoginFormFactoryProps, Empty> {
 
         const { getFieldDecorator } = this.props.form;
         return (
-            <Form onSubmit={this.onSubmit} className="login-form" style={{ margin: "auto" }} >
+            <Form onSubmit={this.onSubmit} className={styles.loginForm} >
                 <FormItem>
                     {getFieldDecorator('account', {
                         rules: [{ required: true, message: '请输入用户名' }],
@@ -45,9 +48,9 @@ class LoginFormFactory extends React.Component<LoginFormFactoryProps, Empty> {
                     )}
                 </FormItem>
                 <FormItem>
-                    <Button type="primary" htmlType="submit" className="login-form-button">
+                    <Button type="primary" htmlType="submit" className={styles.loginFormButton}>
                         登录
-                </Button>
+                    </Button>
                 </FormItem>
             </Form>
         );
