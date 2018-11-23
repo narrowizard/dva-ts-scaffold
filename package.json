@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --progress --colors --hot --history-api-fallback --config ./webpack.config.js",
+    "build": "webpack -o dist/bundle.js",
     "less": "tcm -p src/**/*.less"
   },
   "keywords": [],
@@ -35,6 +36,7 @@
     "image-webpack-loader": "^4.5.0",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
+    "ts-import-plugin": "^1.5.5",
     "ts-loader": "^5.3.0",
     "typescript": "^3.1.6"
   }

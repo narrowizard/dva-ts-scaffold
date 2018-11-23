@@ -1,4 +1,6 @@
 const path = require('path')
+const tsImportPluginFactory = require('ts-import-plugin')
+
 module.exports = {
     mode: 'development',
     entry: [
@@ -22,7 +24,20 @@ module.exports = {
                         loader: 'babel-loader'
                     },
                     {
-                        loader: 'ts-loader'
+                        loader: 'ts-loader',
+                        options: {
+                            transpileOnly: true,
+                            getCustomTransformers: () => ({
+                                before: [tsImportPluginFactory({
+                                    libraryDirectory: 'es',
+                                    libraryName: 'antd',
+                                    style: 'css',
+                                })]
+                            }),
+                            compilerOptions: {
+                                module: 'es2015'
+                            }
+                        }
                     }
                 ]
             },
@@ -34,7 +49,20 @@ module.exports = {
             {
                 test: /\.less$/,
                 exclude: /^node_modules$/,
-                loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!less-loader',
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+                    },
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            javascriptEnabled: true
+                        }
+                    }
+                ]
             },
             {
                 test: /\.(gif|png|jpe?g|svg)$/i,
