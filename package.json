@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors --hot --config ./webpack.config.js"
+    "start": "webpack-dev-server --progress --colors --hot --history-api-fallback --config ./webpack.config.js",
+    "less": "tcm -p src/**/*.less"
   },
   "keywords": [],
   "author": "",
@@ -25,7 +26,9 @@
     "@types/dva": "^1.1.0",
     "@types/react": "^16.7.7",
     "@types/react-dom": "^16.0.10",
+    "antd": "^3.10.8",
     "babel-loader": "^7.1.5",
+    "babel-plugin-import": "^1.11.0",
     "classnames": "^2.2.6",
     "dva": "^2.4.1",
     "file-loader": "^2.0.0",
