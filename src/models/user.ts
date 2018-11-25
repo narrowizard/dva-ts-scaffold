@@ -1,4 +1,6 @@
 import { login } from '../services/user/user';
+import { EffectsCommandMap } from 'dva';
+import { AnyAction } from 'redux';
 
 const NS = 'user';
 
@@ -10,8 +12,9 @@ export default {
     },
 
     effects: {
-        *login({ payload }, { call, put }) {
-            const data = yield call(login)
+        *login(action: AnyAction, saga: EffectsCommandMap) {
+            const data = yield saga.call(login);
+            return data;
         }
     }
 }

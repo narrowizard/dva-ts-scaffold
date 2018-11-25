@@ -27,6 +27,7 @@
     "@types/dva": "^1.1.0",
     "@types/react": "^16.7.7",
     "@types/react-dom": "^16.0.10",
+    "@types/redux-saga": "^0.10.5",
     "antd": "^3.10.8",
     "babel-loader": "^7.1.5",
     "classnames": "^2.2.6",

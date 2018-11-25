@@ -5,14 +5,24 @@ import { WrappedFormUtils } from 'antd/lib/form/Form';
 
 import { Empty } from '../model/global';
 import styles from './Login.less';
+import { connect } from 'dva';
+import { Dispatch, bindActionCreators } from 'redux';
+import { createLoginAction } from '../actions/user';
 
 const FormItem = Form.Item;
 
 interface LoginFormFactoryProps {
     form: WrappedFormUtils,
-    onSucc: () => void
+    onSucc: () => void,
+    login: (account: string, password: string) => Promise<any>;
 }
 
+const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
+    dispatch,
+    login: bindActionCreators(createLoginAction, dispatch)
+})
+
+@connect(undefined, mapDispatchToProps)
 class LoginFormFactory extends React.Component<LoginFormFactoryProps, Empty> {
 
     constructor(props: LoginFormFactoryProps) {
@@ -24,7 +34,7 @@ class LoginFormFactory extends React.Component<LoginFormFactoryProps, Empty> {
         var me = this;
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
-
+            this.props.login(values.account, values.password);
         });
     }
 
