@@ -3,12 +3,15 @@ import { Layout, Menu, Icon, Modal, Input, message } from 'antd';
 import { Link, Switch, Redirect } from 'react-router-dom';
 import { IMenuModel } from '../model/layout';
 import * as styles from './ManageLayout.less';
+import { Dispatch, bindActionCreators } from 'redux';
+import { createGetModulesAction } from '../actions/module';
+import { connect } from 'dva';
 
 const { Header, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
 interface LayoutComponentProps {
-
+    getModules: () => Promise<any>
 }
 
 interface LayoutComponentState {
@@ -20,6 +23,12 @@ interface LayoutComponentState {
     newpasswordConfirm: string,
 }
 
+const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
+    dispatch,
+    getModules: bindActionCreators(createGetModulesAction, dispatch),
+})
+
+@connect(undefined, mapDispatchToProps)
 export class LayoutComponent extends React.Component<LayoutComponentProps, LayoutComponentState> {
 
     constructor(props: LayoutComponentProps) {
@@ -41,7 +50,8 @@ export class LayoutComponent extends React.Component<LayoutComponentProps, Layou
     }
 
     componentDidMount() {
-
+        debugger;
+        this.props.getModules();
     }
 
     toggle = () => {

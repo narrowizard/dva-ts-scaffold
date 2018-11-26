@@ -10,6 +10,11 @@
     "lint": "tslint --fix -t msbuild -c tslint.json 'src/**/*.ts'",
     "precommit": "npm run lint"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit"
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -35,6 +40,7 @@
     "classnames": "^2.2.6",
     "dva": "^2.4.1",
     "file-loader": "^2.0.0",
+    "husky": "^1.2.0",
     "image-webpack-loader": "^4.5.0",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
