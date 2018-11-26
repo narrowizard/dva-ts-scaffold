@@ -13,8 +13,7 @@ export default {
 
     effects: {
         *login(action: AnyAction, saga: EffectsCommandMap) {
-            const data = yield saga.call(login);
-            return data;
+            return yield saga.call(login, action.payload);
         }
     }
 }

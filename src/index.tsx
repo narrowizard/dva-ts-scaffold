@@ -3,7 +3,10 @@ import createHistory from 'history/createBrowserHistory';
 import user from './models/user';
 
 const app = dva({
-    history: createHistory()
+    history: createHistory(),
+    onError: (e) => {
+        console.error(e.message);
+    }
 });
 
 app.model(user);

@@ -12,7 +12,12 @@ module.exports = {
         filename: 'bundle.js'
     },
     devServer: {
-        contentBase: './dist'
+        contentBase: './dist',
+        port: 80,
+        proxy: {
+            '/auth': "http://localhost:8080",
+            '/user': "http://localhost:8080",
+        }
     },
     module: {
         rules: [

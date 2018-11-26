@@ -8,33 +8,49 @@ import styles from './Login.less';
 import { connect } from 'dva';
 import { Dispatch, bindActionCreators } from 'redux';
 import { createLoginAction } from '../actions/user';
+import { routerRedux } from 'dva/router';
 
 const FormItem = Form.Item;
 
-interface LoginFormFactoryProps {
-    form: WrappedFormUtils,
-    onSucc: () => void,
-    login: (account: string, password: string) => Promise<any>;
+namespace LoginForm {
+
+    export interface OwnProps {
+        onSucc: () => void,
+        form: WrappedFormUtils,
+    }
+
+    export interface DispatchProps {
+        login?: (account: string, password: string) => Promise<any>;
+        go?: (pathname: string) => void;
+    }
+
+    export type Props = OwnProps & DispatchProps;
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
     dispatch,
-    login: bindActionCreators(createLoginAction, dispatch)
+    login: bindActionCreators(createLoginAction, dispatch),
+    go: (pathname: string) => { dispatch(routerRedux.push(pathname)) }
 })
 
 @connect(undefined, mapDispatchToProps)
-class LoginFormFactory extends React.Component<LoginFormFactoryProps, Empty> {
+class LoginFormFactory extends React.Component<LoginForm.Props, Empty> {
 
-    constructor(props: LoginFormFactoryProps) {
+    constructor(props: LoginForm.Props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
     onSubmit(e: React.FormEvent<any>) {
-        var me = this;
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
-            this.props.login(values.account, values.password);
+            if (this.props.login) {
+                this.props.login(values.account, values.password).then(data => {
+                    if (this.props.go) {
+                        this.props.go('/');
+                    }
+                });
+            }
         });
     }
 

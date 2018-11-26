@@ -77,7 +77,7 @@ export function updateUserModules(userid: number, modules: string) {
  * @param {string} account 用户名
  * @param {string} password 密码
  */
-export function login(account: string, password: string) {
+export function login({ account, password }: { account: string, password: string }) {
     return postAuth("/user/login", {
         account: account,
         password: password
