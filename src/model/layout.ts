@@ -1,10 +1,10 @@
-export interface MenuModel {
-    Data: MenuItem;
-    Children: MenuModel[];
-    children?: MenuModel[];
+export interface IMenuModel {
+    Data: IMenuItem;
+    Children: IMenuModel[];
+    children?: IMenuModel[];
 }
 
-export interface MenuItem {
+export interface IMenuItem {
     CreatedAt: string;
     DeletedAt: string;
     ID: number;

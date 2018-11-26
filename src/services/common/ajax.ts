@@ -1,25 +1,27 @@
-import { message } from 'antd';
+import { message } from "antd";
 
 /**
- * 
- * @param {*} url 
- * @param {*} data 
- * @param {string} method 
+ *
+ * @param {*} url
+ * @param {*} data
+ * @param {string} method
  */
-function ajax(url: string, data: any, method: 'GET' | 'POST' | 'PUT' | 'DELETE') {
-    let p = new Promise((resolve, reject) => {
+function ajax(url: string, data: any, method: "GET" | "POST" | "PUT" | "DELETE") {
+    const promise = new Promise((resolve, reject) => {
         let params = "";
-        for (let p in data) {
-            params += `${p}=${data[p]}&`
+        for (const p in data) {
+            if (data.hasOwnProperty(p)) {
+                params += `${p}=${data[p]}&`;
+            }
         }
         params = params.substr(0, params.length - 1);
         const options: RequestInit = {
-            method: method,
+            method,
             headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
+                "Content-Type": "application/x-www-form-urlencoded",
             },
             credentials: "include",
-            body: ''
+            body: "",
         };
         switch (method.toUpperCase()) {
             case "GET":
@@ -40,28 +42,28 @@ function ajax(url: string, data: any, method: 'GET' | 'POST' | 'PUT' | 'DELETE')
             try {
                 if (!res.ok) {
                     // 请求失败
-                    res.json().then((data) => {
-                        if (data.reason && data.reason.indexOf("UnLoginError") > -1) {
+                    res.json().then((resultData) => {
+                        if (resultData.reason && resultData.reason.indexOf("UnLoginError") > -1) {
                             window.location.href = "/login";
                         }
-                        reject(data.message);
-                    })
+                        reject(resultData.message);
+                    });
                     return;
                 }
-                res.text().then((data) => {
-                    resolve(data);
+                res.text().then((resultData) => {
+                    resolve(resultData);
                 });
             } catch (e) {
-                reject("无法解析的返回值")
+                reject("无法解析的返回值");
             }
         }).catch((msg) => {
             reject(msg);
         });
     });
-    p.catch((msg) => {
+    promise.catch((msg) => {
         message.error(msg);
     });
-    return p;
+    return promise;
 }
 
 export function get(url: string, data: any) {

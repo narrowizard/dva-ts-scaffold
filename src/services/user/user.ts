@@ -1,4 +1,4 @@
-import { getUser, postUser, delUser, putUser, getAuth, postAuth, delAuth, putAuth } from "../common/proxy";
+import { delAuth, delUser, getAuth, getUser, postAuth, postUser, putAuth, putUser } from "../common/proxy";
 
 const pagesize = 10;
 
@@ -9,9 +9,9 @@ const pagesize = 10;
  */
 export function getUserList(page: number, search: string) {
     return getUser("/user/list", {
-        page: page,
-        pagesize: pagesize,
-        search: search
+        page,
+        pagesize,
+        search,
     });
 }
 
@@ -21,20 +21,20 @@ export function getUserList(page: number, search: string) {
  */
 export function getUserInfo(id: number) {
     return getUser("/user/info", {
-        id: id
-    })
+        id,
+    });
 }
 
 /**
  * 创建新用户
- * @param {string} account 帐号 
+ * @param {string} account 帐号
  * @param {string} password 密码
  */
 export function createUser(account: string, password: string, menus: []) {
     return postUser("/user/new", {
-        account: account,
-        password: password,
-        menus: menus
+        account,
+        password,
+        menus,
     });
 }
 
@@ -44,7 +44,7 @@ export function createUser(account: string, password: string, menus: []) {
  */
 export function deleteUser(userid: number) {
     return delUser("/user/delete", {
-        userid: userid
+        userid,
     });
 }
 
@@ -55,9 +55,9 @@ export function deleteUser(userid: number) {
  */
 export function updateUserStatus(userid: number, status: number) {
     return putUser("/user/update", {
-        userid: userid,
-        status: status
-    })
+        userid,
+        status,
+    });
 }
 
 /**
@@ -67,9 +67,9 @@ export function updateUserStatus(userid: number, status: number) {
  */
 export function updateUserModules(userid: number, modules: string) {
     return putUser("/user/update", {
-        userid: userid,
-        menus: modules
-    })
+        userid,
+        menus: modules,
+    });
 }
 
 /**
@@ -79,9 +79,9 @@ export function updateUserModules(userid: number, modules: string) {
  */
 export function login({ account, password }: { account: string, password: string }) {
     return postAuth("/user/login", {
-        account: account,
-        password: password
-    })
+        account,
+        password,
+    });
 }
 
 export function logout() {
@@ -102,7 +102,7 @@ export function isLogin() {
  */
 export function updatePassword(oldpwd: string, newpwd: string) {
     return putAuth("/user/updatepassword", {
-        oldpwd: oldpwd,
-        newpwd: newpwd
-    })
+        oldpwd,
+        newpwd,
+    });
 }

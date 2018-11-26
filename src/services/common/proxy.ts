@@ -1,13 +1,12 @@
-import { post, get, del, put } from "./ajax";
-
+import { del, get, post, put } from "./ajax";
 
 export function postUser(url: string, data?: any) {
     return post("/user" + url, data);
 }
 
 export function getUser(url: string, data?: any) {
-    return get("/user" + url, data).then((data: string) => {
-        return JSON.parse(data);
+    return get("/user" + url, data).then((resultData: string) => {
+        return JSON.parse(resultData);
     });
 }
 

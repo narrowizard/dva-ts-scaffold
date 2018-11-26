@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 
-import { Empty } from '../model/global';
+import { IEmpty } from '../model/global';
 import styles from './Login.less';
 import { connect } from 'dva';
 import { Dispatch, bindActionCreators } from 'redux';
@@ -34,7 +34,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
 })
 
 @connect(undefined, mapDispatchToProps)
-class LoginFormFactory extends React.Component<LoginForm.Props, Empty> {
+class LoginFormFactory extends React.Component<LoginForm.Props, IEmpty> {
 
     constructor(props: LoginForm.Props) {
         super(props);
@@ -85,9 +85,9 @@ class LoginFormFactory extends React.Component<LoginForm.Props, Empty> {
 
 const LoginForm = Form.create()(LoginFormFactory);
 
-export class LoginComponent extends React.Component<Empty, { redirect: boolean }> {
+export class LoginComponent extends React.Component<IEmpty, { redirect: boolean }> {
 
-    constructor(props: Empty) {
+    constructor(props: IEmpty) {
         super(props);
         this.state = {
             redirect: false

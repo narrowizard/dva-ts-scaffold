@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Layout, Menu, Icon, Modal, Input, message } from 'antd';
 import { Link, Switch, Redirect } from 'react-router-dom';
-import { MenuModel } from '../model/layout';
+import { IMenuModel } from '../model/layout';
 import * as styles from './ManageLayout.less';
 
 const { Header, Sider } = Layout;
@@ -50,7 +50,7 @@ export class LayoutComponent extends React.Component<LayoutComponentProps, Layou
         });
     }
 
-    renderMenu(data: MenuModel[]) {
+    renderMenu(data: IMenuModel[]) {
         return <div></div>
     }
 
