@@ -15,7 +15,13 @@
         "noImplicitAny": true,
         "strictNullChecks": true,
         "allowSyntheticDefaultImports": true,
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "dva/dynamic": [
+                "src/types/dva/dynamic"
+            ]
+        }
     },
     "include": [
         "./src"

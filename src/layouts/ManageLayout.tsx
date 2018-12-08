@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
 })
 
 @connect(undefined, mapDispatchToProps)
-export class LayoutComponent extends React.Component<LayoutComponentProps, LayoutComponentState> {
+export default class LayoutComponent extends React.Component<LayoutComponentProps, LayoutComponentState> {
 
     constructor(props: LayoutComponentProps) {
         super(props);

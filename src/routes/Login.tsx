@@ -85,7 +85,7 @@ class LoginFormFactory extends React.Component<LoginForm.Props, IEmpty> {
 
 const LoginForm = Form.create()(LoginFormFactory);
 
-export class LoginComponent extends React.Component<IEmpty, { redirect: boolean }> {
+export default class LoginComponent extends React.Component<IEmpty, { redirect: boolean }> {
 
     constructor(props: IEmpty) {
         super(props);
