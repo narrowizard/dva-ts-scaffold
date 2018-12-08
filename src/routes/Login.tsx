@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
+import intl from 'react-intl-universal';
 
 import { IEmpty } from '../model/global';
 import styles from './Login.less';
@@ -75,7 +76,7 @@ class LoginFormFactory extends React.Component<LoginForm.Props, IEmpty> {
                 </FormItem>
                 <FormItem>
                     <Button type="primary" htmlType="submit" className={styles.loginFormButton}>
-                        登录
+                        {intl.get('action.login')}
                     </Button>
                 </FormItem>
             </Form>

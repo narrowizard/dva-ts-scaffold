@@ -5,6 +5,7 @@ import dynamic from 'dva/dynamic';
 import { DvaInstance } from 'dva';
 
 import './index.less';
+import IntlProvider from './components/IntlProvider/IntlProvider';
 
 function RouterConfig({ history, app }: { history: H.History, app: DvaInstance }): JSX.Element {
 
@@ -23,13 +24,15 @@ function RouterConfig({ history, app }: { history: H.History, app: DvaInstance }
     });
 
     return (
-        <Router history={history}>
-            <Switch>
-                <Redirect path="/" exact to="/layout/manager" />
-                <Route path="/login" component={Login} />
-                <Route path="/layout/manager" component={Layout} />
-            </Switch>
-        </Router>
+        <IntlProvider>
+            <Router history={history}>
+                <Switch>
+                    <Redirect path="/" exact to="/layout/manager" />
+                    <Route path="/login" component={Login} />
+                    <Route path="/layout/manager" component={Layout} />
+                </Switch>
+            </Router>
+        </IntlProvider>
     );
 }
 
