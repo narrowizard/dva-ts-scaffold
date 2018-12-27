@@ -1,6 +1,6 @@
 import dva from 'dva';
 import createHistory from 'history/createBrowserHistory';
-import user from './models/user';
+import home from './models/home';
 
 const app = dva({
     history: createHistory(),
@@ -9,7 +9,7 @@ const app = dva({
     }
 });
 
-app.model(user);
+app.model(home);
 
 app.router(require('./router').default);
 

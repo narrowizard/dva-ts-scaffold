@@ -20,6 +20,12 @@
         "paths": {
             "dva/dynamic": [
                 "src/types/dva/dynamic"
+            ],
+            "@models/*": [
+                "src/models/*"
+            ],
+            "@definitions/*": [
+                "src/definitions/*"
             ]
         }
     },

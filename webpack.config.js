@@ -15,8 +15,7 @@ module.exports = {
         contentBase: './dist',
         port: 80,
         proxy: {
-            '/auth': "http://localhost:8080",
-            '/user': "http://localhost:8080",
+
         }
     },
     module: {
@@ -102,6 +101,10 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx', '.ts', '.tsx']
+        extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
+        alias: {
+            '@models': path.resolve(__dirname, 'src/models/'),
+            '@definitions': path.resolve(__dirname, 'src/definitions/')
+        }
     },
 };

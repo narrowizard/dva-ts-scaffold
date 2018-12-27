@@ -1,3 +1,3 @@
 export default {
-    "action.login": "Login",
+    "index.greet": "Hello, world!",
 };
