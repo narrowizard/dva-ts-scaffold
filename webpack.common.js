@@ -1,23 +1,16 @@
 const path = require('path')
 const tsImportPluginFactory = require('ts-import-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
     entry: [
         './src/index.tsx'
     ],
-    output: {
-        path: path.resolve(__dirname, '/dist'),
-        publicPath: '/',
-        filename: 'bundle.js'
-    },
-    devServer: {
-        contentBase: './dist',
-        port: 80,
-        proxy: {
-
-        }
-    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './public/index.html'
+        }),
+    ],
     module: {
         rules: [
             {
