@@ -1,6 +1,7 @@
 const path = require('path')
 const tsImportPluginFactory = require('ts-import-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const antd = require('./src/themes/antd');
 
 module.exports = {
     entry: [
@@ -28,7 +29,7 @@ module.exports = {
                                 before: [tsImportPluginFactory({
                                     libraryDirectory: 'es',
                                     libraryName: 'antd',
-                                    style: 'css',
+                                    style: true,
                                 })]
                             }),
                             compilerOptions: {
@@ -54,8 +55,11 @@ module.exports = {
                 ]
             },
             {
+                // 项目的样式, 开启css modules
                 test: /\.less$/,
-                exclude: /^node_modules$/,
+                exclude: [
+                    path.resolve(__dirname, 'node_modules')
+                ],
                 use: [
                     {
                         loader: 'style-loader'
@@ -72,8 +76,27 @@ module.exports = {
                     },
                     {
                         loader: 'less-loader',
+                    }
+                ]
+            },
+            {
+                // antd styles, without css modules
+                test: /\.less$/,
+                include: [
+                    path.resolve(__dirname, 'node_modules')
+                ],
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader',
+                    },
+                    {
+                        loader: 'less-loader',
                         options: {
-                            javascriptEnabled: true
+                            javascriptEnabled: true,
+                            modifyVars: antd
                         }
                     }
                 ]
