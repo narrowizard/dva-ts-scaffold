@@ -5,29 +5,27 @@ import dynamic from 'dva/dynamic';
 import { DvaInstance } from 'dva';
 
 import IntlProvider from './components/IntlProvider/IntlProvider';
+import getRouters from './config/routes';
+
+
 
 function RouterConfig({ history, app }: { history: H.History, app: DvaInstance }): JSX.Element {
 
-    const Index = dynamic({
-        app,
-        models: () => [
-        ],
-        component: () => import('./routes/Home/Index')
-    });
-
-    const Layout = dynamic({
-        app,
-        models: () => [
-        ],
-        component: () => import('./routes/Some')
-    });
+    const routes = getRouters();
 
     return (
         <IntlProvider>
             <Router history={history}>
                 <Switch>
-                    <Route path="/" exact component={Index} />
-                    <Route path="/some" component={Layout} />
+                    {
+                        routes.map(item => (
+                            <Route key={item.name} path={item.path} exact={item.exact} component={dynamic({
+                                app,
+                                models: () => item.models,
+                                component: item.component
+                            })} />
+                        ))
+                    }
                 </Switch>
             </Router>
         </IntlProvider>
