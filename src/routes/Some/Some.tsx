@@ -5,11 +5,14 @@ import { Dispatch } from 'redux';
 import styles from './Some.less';
 import { IState } from '@definitions/global';
 import { RootAction } from '@definitions/types';
+import { Button } from 'antd';
 
 class Some extends React.Component {
     render() {
         return (
-            <div className={styles.title}>Some Page</div>
+            <div className={styles.title}>
+                <Button type="primary">Some Button</Button>
+            </div>
         )
     }
 }
