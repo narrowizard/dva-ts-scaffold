@@ -1,9 +1,11 @@
+import { IRouteInfo } from "@definitions/global";
+
 // routes.ts
 // 路由配置
-const getRouters = () => ([
+const getRouters: () => IRouteInfo[] = () => ([
     {
         name: "Index",
-        models: [],
+        models: ["home"],
         path: "/",
         exact: true,
         component: () => import("../routes/Home/Index"),

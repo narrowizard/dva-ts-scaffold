@@ -12,6 +12,9 @@ module.exports = {
             template: './public/index.html'
         }),
     ],
+    output: {
+        publicPath: '/',
+    },
     module: {
         rules: [
             {
@@ -120,7 +123,8 @@ module.exports = {
         extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
         alias: {
             '@models': path.resolve(__dirname, 'src/models/'),
-            '@definitions': path.resolve(__dirname, 'src/definitions/')
+            '@definitions': path.resolve(__dirname, 'src/definitions/'),
+            '@components': path.resolve(__dirname, 'src/components/'),
         }
     },
 };

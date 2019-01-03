@@ -15,3 +15,11 @@ export interface IModel {
 export interface IState {
     [Home]: IHome;
 }
+
+export interface IRouteInfo {
+    name: string;
+    models: string[];
+    path: string;
+    exact?: boolean;
+    component: () => PromiseLike<any>;
+}
