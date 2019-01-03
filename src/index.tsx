@@ -9,7 +9,7 @@ const app = dva({
     }
 });
 
-app.model(home);
+// app.model(home);
 
 app.router(require('./router').default);
 

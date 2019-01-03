@@ -21,7 +21,7 @@ function RouterConfig({ history, app }: { history: H.History, app: DvaInstance }
                         routes.map(item => (
                             <Route key={item.name} path={item.path} exact={item.exact} component={dynamic({
                                 app,
-                                models: () => item.models,
+                                models: () => item.models.map(m => import(`./models/${m}`)),
                                 component: item.component
                             })} />
                         ))

@@ -26,6 +26,9 @@
             ],
             "@definitions/*": [
                 "src/definitions/*"
+            ],
+            "@components/*": [
+                "src/components/*"
             ]
         }
     },
