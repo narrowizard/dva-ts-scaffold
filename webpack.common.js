@@ -1,6 +1,7 @@
 const path = require('path')
 const tsImportPluginFactory = require('ts-import-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const antd = require('./src/themes/antd');
 
 module.exports = {
@@ -10,6 +11,10 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './public/index.html'
+        }),
+        new ExtractTextPlugin({
+            filename: `[name].[hash:8].css`,
+            allChunks: true,
         }),
     ],
     output: {
@@ -45,17 +50,16 @@ module.exports = {
             {
                 test: /\.css$/,
                 exclude: /^node_modules$/,
-                use: [
-                    {
-                        loader: 'style-loader'
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: false,
-                        }
-                    },
-                ]
+                use: ExtractTextPlugin.extract({
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: false,
+                            }
+                        },
+                    ]
+                })
             },
             {
                 // 项目的样式, 开启css modules
@@ -63,24 +67,24 @@ module.exports = {
                 exclude: [
                     path.resolve(__dirname, 'node_modules')
                 ],
-                use: [
-                    {
-                        loader: 'style-loader'
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true,
-                            importLoaders: 1,
-                            localIdentName: "[name]__[local]___[hash:base64:5]",
-                            sourceMap: true,
-                            minimize: true
+                use: ExtractTextPlugin.extract({
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: true,
+                                importLoaders: 1,
+                                localIdentName: "[name]__[local]___[hash:base64:5]",
+                                sourceMap: true,
+                                minimize: true,
+                                exportOnlyLocals: true,
+                            }
+                        },
+                        {
+                            loader: 'less-loader',
                         }
-                    },
-                    {
-                        loader: 'less-loader',
-                    }
-                ]
+                    ]
+                })
             },
             {
                 // antd styles, without css modules
@@ -88,21 +92,23 @@ module.exports = {
                 include: [
                     path.resolve(__dirname, 'node_modules')
                 ],
-                use: [
-                    {
-                        loader: 'style-loader'
-                    },
-                    {
-                        loader: 'css-loader',
-                    },
-                    {
-                        loader: 'less-loader',
-                        options: {
-                            javascriptEnabled: true,
-                            modifyVars: antd
+                use: ExtractTextPlugin.extract({
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                importLoaders: 1,
+                            }
+                        },
+                        {
+                            loader: 'less-loader',
+                            options: {
+                                javascriptEnabled: true,
+                                modifyVars: antd
+                            }
                         }
-                    }
-                ]
+                    ]
+                })
             },
             {
                 test: /\.(gif|png|jpe?g|svg)$/i,
