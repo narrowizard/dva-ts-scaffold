@@ -9,16 +9,22 @@ import styles from './Index.less';
 import { IState } from '@definitions/global';
 import { RootAction } from '@definitions/types';
 import actionCreators from '@models/actions/home';
+import { ISearchReposParams } from '@services/github/api';
 
 interface IIndexProps {
     info: number;
-    getBooksList: () => Promise<void>
+    getBooksList: () => Promise<void>;
+    searchGithub: (params: ISearchReposParams) => Promise<void>;
 }
 
 class Index extends React.Component<IIndexProps> {
 
     componentDidMount() {
-        this.props.getBooksList();
+        this.props.searchGithub({
+            q: 'tinyts',
+            sort: 'star',
+            order: 'desc'
+        });
     }
 
     render() {
@@ -41,7 +47,8 @@ const mapStateToProps = (state: IState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<RootAction>) => ({
     dispatch,
-    getBooksList: bindActionCreators(actionCreators(NS).getBooksListAction, dispatch)
+    getBooksList: bindActionCreators(actionCreators(NS).getBooksListAction, dispatch),
+    searchGithub: bindActionCreators(actionCreators(NS).searchGithub, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index);

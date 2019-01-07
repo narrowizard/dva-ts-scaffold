@@ -2,6 +2,7 @@ import { BookListResult } from "@definitions/anyapi/books";
 import { IModel } from "@definitions/global";
 import { IHome } from "@definitions/state";
 import { getBooksList } from "@services/anyapi/books";
+import { searchGithub } from "@services/github/api";
 import { EffectsCommandMap } from "dva";
 import { AnyAction } from "redux";
 
@@ -15,6 +16,7 @@ const M: IModel & {
     state: {
         info: 111,
         books: new BookListResult(),
+        repos: {},
     },
 
     effects: {
@@ -29,12 +31,29 @@ const M: IModel & {
                 });
             }
         },
+        *searchRepos({ payload }: AnyAction, { put, call }: EffectsCommandMap) {
+            const data = yield call(searchGithub, payload);
+            if (data) {
+                yield put({
+                    type: "setRepos",
+                    payload: {
+                        data,
+                    },
+                });
+            }
+        },
     },
     reducers: {
         setBookList(state: IHome, { payload }: AnyAction) {
             return {
                 ...state,
                 books: payload.data,
+            };
+        },
+        setRepos(state: IHome, { payload }: AnyAction) {
+            return {
+                ...state,
+                repos: payload.data,
             };
         },
     },

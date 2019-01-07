@@ -37,3 +37,7 @@ export function putAuth(url: string, data?: any) {
 export function getBooks(url: string, data?: any) {
     return get(`/books${url}`, data);
 }
+
+export function getGithub(url: string, data?: any) {
+    return get(`/github${url}`, data);
+}
