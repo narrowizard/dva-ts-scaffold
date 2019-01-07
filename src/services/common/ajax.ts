@@ -1,4 +1,5 @@
 import { message } from "antd";
+import fetch from "isomorphic-fetch";
 
 /**
  *
@@ -21,7 +22,6 @@ function ajax(url: string, data: any, method: "GET" | "POST" | "PUT" | "DELETE")
                 "Content-Type": "application/x-www-form-urlencoded",
             },
             credentials: "include",
-            body: "",
         };
         switch (method.toUpperCase()) {
             case "GET":

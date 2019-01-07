@@ -131,6 +131,8 @@ module.exports = {
             '@models': path.resolve(__dirname, 'src/models/'),
             '@definitions': path.resolve(__dirname, 'src/definitions/'),
             '@components': path.resolve(__dirname, 'src/components/'),
+            '@services': path.resolve(__dirname, 'src/services/'),
+            '@config': path.resolve(__dirname, 'src/config/'),
         }
     },
 };

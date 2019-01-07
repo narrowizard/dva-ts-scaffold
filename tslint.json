@@ -6,7 +6,9 @@
     "jsRules": {},
     "rules": {
         "object-literal-sort-keys": false,
-        "no-empty-interface": false
+        "no-empty-interface": false,
+        "max-classes-per-file": false,
+        "variable-name": false
     },
     "rulesDirectory": []
 }

@@ -33,3 +33,7 @@ export function delAuth(url: string, data?: any) {
 export function putAuth(url: string, data?: any) {
     return put("/auth" + url, data);
 }
+
+export function getBooks(url: string, data?: any) {
+    return get(`/books${url}`, data);
+}

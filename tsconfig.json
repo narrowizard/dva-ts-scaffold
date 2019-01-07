@@ -29,6 +29,12 @@
             ],
             "@components/*": [
                 "src/components/*"
+            ],
+            "@services/*": [
+                "src/services/*"
+            ],
+            "@config/*": [
+                "src/config/*"
             ]
         }
     },

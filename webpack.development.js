@@ -8,7 +8,10 @@ module.exports = merge(common, {
         contentBase: path.join(__dirname, 'dist'),
         port: 80,
         proxy: {
-
+            "/books": {
+                target: "https://api.nytimes.com/svc/books/v3",
+                pathRewrite: { "^/books": "" }
+            }
         }
     },
 });
