@@ -16,10 +16,14 @@ export interface IState {
     [Home]: IHome;
 }
 
-export interface IRouteInfo {
-    name: string;
+export interface IDynamicRouteInfo {
     models: string[];
+    component: () => PromiseLike<any>;
+}
+
+export interface IRouterDataItem {
+    name: string;
     path: string;
     exact?: boolean;
-    component: () => PromiseLike<any>;
+    component: React.ComponentType<any>;
 }
