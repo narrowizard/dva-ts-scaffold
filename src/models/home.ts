@@ -21,7 +21,7 @@ const M: IModel & {
 
     effects: {
         *getBooksList({ }, { put, call }: EffectsCommandMap) {
-            const data = yield call(getBooksList);
+            const data: {} = yield call(getBooksList);
             if (data) {
                 yield put({
                     type: "setBookList",

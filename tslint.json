@@ -10,5 +10,10 @@
         "max-classes-per-file": false,
         "variable-name": false
     },
-    "rulesDirectory": []
+    "rulesDirectory": [],
+    "linterOptions": {
+        "exclude": [
+            "src/types/**/*.d.ts"
+        ]
+    }
 }
