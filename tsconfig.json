@@ -18,6 +18,9 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
+            "dva": [
+                "src/types/dva/index",
+            ],
             "dva/dynamic": [
                 "src/types/dva/dynamic"
             ],
@@ -29,6 +32,12 @@
             ],
             "@components/*": [
                 "src/components/*"
+            ],
+            "@services/*": [
+                "src/services/*"
+            ],
+            "@config/*": [
+                "src/config/*"
             ]
         }
     },

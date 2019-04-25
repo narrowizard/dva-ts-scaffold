@@ -8,7 +8,10 @@ module.exports = merge(common, {
         contentBase: path.join(__dirname, 'dist'),
         port: 80,
         proxy: {
-
+            "/github": {
+                target: "https://api.github.com",
+                pathRewrite: { "^/github": "" }
+            }
         }
     },
 });
